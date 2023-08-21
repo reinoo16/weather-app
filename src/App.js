@@ -20,6 +20,15 @@ function App() {
     }
   }
 
+  const searchLocationIcon = () => {
+    axios.get(url).then((response) => {
+      setData(response.data)
+      console.log(response.data)
+    })
+    setLocation('');
+    setLeftMenu(!leftMenu);
+  }
+
   const [leftMenu, setLeftMenu] = useState(true);
 
   const changeMenu = () => {
@@ -33,7 +42,7 @@ function App() {
           <i onClick={changeMenu} class="bi bi-x-lg"></i>
           <div className="search">
             <input value={location} onChange={event => setLocation(event.target.value)} onKeyPress={searchLocation} type="text" name="" id="" placeholder="Location" />
-            <i className="bi bi-search"></i>
+            <i onClick={searchLocationIcon} className="bi bi-search"></i>
           </div>
           <div className="weather-icon">
             {data.weather ? (<img src={`/img/${data.weather[0].icon}.svg`} alt="" />) : (<img src='/img/03d.svg' alt="" />)}
