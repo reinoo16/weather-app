@@ -64,13 +64,19 @@ function App() {
         return main;
     }
   }
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      getWeather();
+    }
+  }
   return (
     <div className='w-full h-full md:h-screen'>
       <div className='relative w-full h-full max-w-[840px] mx-auto px-[20px]'>
         <header className='flex flex-col items-center gap-[40px] pt-[60px] pb-[100px] md:pb-0 w-full'>
           <h1 className='font-semibold text-[26px] text-center'>Hava Durumu Uygulaması</h1>
           <div className='relative'>
-            <input value={city} onChange={(e) => setCity(e.target.value)} placeholder='Şehir adı girin...' className='w-full md:w-[530px] outline-none h-[50px] rounded-[26px] pl-[30px] pr-[calc(130px+30px)] text-[18px] placeholder:text-textPurple text-white font-normal bg-boxPurple' type="text" />
+            <input onKeyDown={handleKeyPress} value={city} onChange={(e) => setCity(e.target.value)} placeholder='Şehir adı girin...' className='w-full md:w-[530px] outline-none h-[50px] rounded-[26px] pl-[30px] pr-[calc(130px+30px)] text-[18px] placeholder:text-textPurple text-white font-normal bg-boxPurple' type="text" />
             <button onClick={getWeather} className='absolute right-0 top-0 bg-purple rounded-[26px] h-full px-[48px] text-[18px] font-medium text-white'>Ara</button>
           </div>
           {weatherError && (
